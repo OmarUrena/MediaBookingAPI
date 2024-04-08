@@ -16,7 +16,7 @@ namespace MediaBookingAPI.Controllers
         {
             _context = context;
         }
-
+        //GET: api/Reservaciones
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reservaciones>>> GetReservaciones()
         {
