@@ -8,7 +8,7 @@ namespace MediaBookingAPI.Data
         public BDContext(DbContextOptions<BDContext> options) : base(options) { }
 
         public DbSet<Usuario> Usuarios { get; set; }
-        
+        public DbSet<Reservaciones> Reservaciones { get; set; }
 
 
     }
