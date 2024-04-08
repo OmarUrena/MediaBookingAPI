@@ -10,6 +10,8 @@ namespace MediaBookingAPI.Data
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Reservaciones> Reservaciones { get; set; }
 
+        public DbSet<Materias> materia { get; set; }
+
 
     }
 }

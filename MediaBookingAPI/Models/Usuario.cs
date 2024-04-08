@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MediaBookingAPI.Models
 {
@@ -21,6 +22,8 @@ namespace MediaBookingAPI.Models
 
         public string direccion_usuario { get; set; }
         public string tipo_usuario { get; set; }
+
+        public virtual ICollection<Materias> Materias { get; set; }
 
     }
 }
