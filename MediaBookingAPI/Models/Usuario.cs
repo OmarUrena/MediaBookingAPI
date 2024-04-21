@@ -23,7 +23,7 @@ namespace MediaBookingAPI.Models
         public string direccion_usuario { get; set; }
         public string tipo_usuario { get; set; }
 
-        public virtual ICollection<Materias> Materias { get; set; }
+        
 
     }
 }
