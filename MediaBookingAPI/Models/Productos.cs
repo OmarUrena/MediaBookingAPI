@@ -10,6 +10,7 @@ namespace MediaBookingAPI.Models
         public string descripcion_producto { get; set; }
         public int id_tipo_producto { get; set; }    
         public DateOnly fecha_producto { get; set; }
+        public virtual ICollection<Inventario> inventarios { get; set; }
 
     }
 }

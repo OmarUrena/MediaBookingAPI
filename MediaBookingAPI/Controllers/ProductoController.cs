@@ -1,8 +1,9 @@
 ﻿using MediaBookingAPI.Data;
 using MediaBookingAPI.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MediaBookingAPI.Controllers
 {
@@ -16,10 +17,22 @@ namespace MediaBookingAPI.Controllers
         {
             _context = context;
         }
+
+        // GET: api/Producto
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Productos>>> GetProductos()
+        public async Task<IActionResult> GetProducto()
         {
-            return await _context.Producto.ToListAsync();
+            var productos = await _context.Producto
+                .Select(r => new {
+                    id = r.Id,
+                    idtipo = r.IdTipoProducto,
+                    nombre = r.Nombre,
+                    descripcion = r.Descripcion,
+                    nombreTipoProducto = r.TipoProducto.nombre 
+                })
+                .ToListAsync();
+
+            return Ok(productos);
         }
     }
 }

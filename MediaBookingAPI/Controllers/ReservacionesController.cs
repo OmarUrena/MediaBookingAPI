@@ -30,7 +30,7 @@ namespace MediaBookingAPI.Controllers
                 .Include (r => r.Producto)
                 .Select(r => new {
                     IdReservacion = r.id_reservacion,
-                    NombreUsuario = r.Usuario.nombre_usuario,
+                    NombreUsuario = r.Usuario.nombre,
                     NombreMateria = r.nombre_materia,
                     NombreProducto = r.Producto.nombre_producto,
                     TelefonoReservacion = r.telefono_reservacion,

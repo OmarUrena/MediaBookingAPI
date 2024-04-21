@@ -24,7 +24,7 @@ namespace MediaBookingAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(int id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _context.Usuario.FindAsync(id);
 
             if (usuario == null)
             {
@@ -38,14 +38,14 @@ namespace MediaBookingAPI.Controllers
 
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
-            return await _context.Usuarios.ToListAsync();
+            return await _context.Usuario.ToListAsync();
         }
 
         [HttpPost]
 
         public async Task<IActionResult> CreateUsuario([FromBody] Usuario usuario)
         {
-            _context.Usuarios.Add(usuario);
+            _context.Usuario.Add(usuario);
             await _context.SaveChangesAsync();
 
             return Created("", usuario);
