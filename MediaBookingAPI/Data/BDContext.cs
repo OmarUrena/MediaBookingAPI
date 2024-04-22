@@ -15,7 +15,8 @@ namespace MediaBookingAPI.Data
 
         public DbSet<Inventario> Inventario { get; set; }
 
-        /* protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Producto>()
                .HasOne(p => p.TipoProducto)
@@ -25,9 +26,33 @@ namespace MediaBookingAPI.Data
 
             modelBuilder.Entity<Inventario>()
                .HasOne(i => i.Producto)
-               .WithMany(p => p.inventario) 
-               .HasForeignKey(i => i.idproducto); 
-        } */
+               .WithMany() 
+               .HasForeignKey(i => i.idproducto);
+
+            modelBuilder.Entity<Reservaciones>()
+                .HasOne(i => i.Usuario)
+                .WithMany()
+                .HasForeignKey(i => i.idsolicitante);
+
+            modelBuilder.Entity<Reservaciones>()
+                .HasOne(t => t.Materias)
+                .WithMany()
+                .HasForeignKey(t => t.idmateria);   
+            
+            modelBuilder.Entity<Reservaciones>()
+                .HasOne(y => y.Producto)
+                .WithMany()
+                .HasForeignKey(y => y.idproducto);
+
+            modelBuilder.Entity<Reservaciones>()
+                .HasOne(g => g.Auxiliar)
+                .WithMany()
+                .HasForeignKey(e => e.idauxiliar);
+     
+                
+
+
+        }
 
 
     }

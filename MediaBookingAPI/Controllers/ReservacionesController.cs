@@ -15,30 +15,34 @@ namespace MediaBookingAPI.Controllers
         public ReservacionesController(BDContext context)
         {
             _context = context;
+
         }
         //GET: api/Reservaciones
         [HttpGet]
-        //public async Task<ActionResult<IEnumerable<Reservaciones>>> GetReservaciones()
-        //{
-        //    return await _context.Reservaciones.ToListAsync();
-        //}
 
-        public async Task<IActionResult> GetReservaciones()
+        public async Task<IActionResult>GetReservaciones()
         {
             var reservaciones = await _context.Reservaciones
                 .Include(r => r.Usuario)
-                .Include (r => r.Producto)
-                .Select(r => new {
-                    IdReservacion = r.id_reservacion,
-                    NombreUsuario = r.Usuario.nombre,
-                    NombreMateria = r.nombre_materia,
-                    NombreProducto = r.Producto.Nombre,
-                    TelefonoReservacion = r.telefono_reservacion,
-                    HoraInicioReservacion = r.hora_inicio_reservacion,
-                    HoraFinalReservacion = r.hora_final_reservacion,
-                    CorreoReservacion = r.correo_reservacion,
-                })
-                .ToListAsync();
+                .Include(r => r.Producto)
+                .Include(r => r.Auxiliar)
+                .Include(r => r.Materias)
+                .Select(r => new
+                {
+                    id = r.id,
+                    matricula = r.Usuario.usuario,
+                    nombreestudiante = r.Usuario.nombre,
+                    nombreproducto = r.Producto.Nombre,
+                    codigos = r.Materias.codigo,
+                    nombremateria = r.Materias.nombre,
+                    curso = r.Materias.curso,
+                    fecharegistro = r.fechareserva,
+                    horainicial = r.Materias.horainicio,
+                    horafin = r.Materias.horafin,
+                    estatuse = r.estatus,
+                    nombreauxiliar = r.Auxiliar.nombre   
+
+                }) .ToArrayAsync();
 
             return Ok(reservaciones);
         }
