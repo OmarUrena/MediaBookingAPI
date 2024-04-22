@@ -65,6 +65,43 @@ namespace MediaBookingAPI.Controllers
             return usuario; // En un caso real, deberías devolver solo datos seguros o un token JWT
         }
 
+        // PUT: api/usuarios
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
+        {
+            if (id != usuario.id)
+            {
+                return BadRequest();
+            }
 
+            _context.Entry(usuario).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UsuarioExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        private bool UsuarioExists(int id)
+        {
+            return _context.Usuario.Any(e => e.id == id);
+        }
     }
 }
+
+
+
+

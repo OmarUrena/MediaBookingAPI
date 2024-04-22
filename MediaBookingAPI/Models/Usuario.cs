@@ -23,12 +23,5 @@ namespace MediaBookingAPI.Models
         [Column("FechaRegistro")]
         public DateTime registro { get; set; }
 
-       
-
-       
-
-        
-
-
     }
 }

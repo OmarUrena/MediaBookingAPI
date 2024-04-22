@@ -21,5 +21,41 @@ namespace MediaBookingAPI.Controllers
         {
             return await _context.TipoProducto.ToListAsync();
         }
+
+        // PUT: api/TipoProductos/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutTipoProducto(int id, TipoProducto tipoProducto)
+        {
+            if (id != tipoProducto.id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(tipoProducto).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TipoProductoExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        private bool TipoProductoExists(int id)
+        {
+            return _context.TipoProducto.Any(e => e.id == id);
+        }
     }
 }
+
