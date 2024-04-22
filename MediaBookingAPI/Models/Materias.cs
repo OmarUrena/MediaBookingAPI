@@ -7,24 +7,33 @@ namespace MediaBookingAPI.Models
     {
 
         [Key]
+        public int id { get; set; }
 
-        public string id_materia { get; set; }
+        [Column("Codigo")]
+        public string codigo { get; set; }
 
-        public string nombre_materia { get; set; }
+        [Column("Nombre")]
+        public string nombre { get; set; }
 
-        public string profesor_materia { get; set; }
+        [Column("Dia")]
+        public string dia {  get; set; }
 
-        [ForeignKey("Usuario")]
-        public int id_usuario { get; set; }
+        [Column("HoraInicio")]
+        public TimeOnly horainicio { get; set; }
 
-        public string dia_materia { get; set; }
+        [Column("HoraFin")]
+        public TimeOnly horafin {  get; set; }
 
-        public TimeOnly hora_incial_materia { get; set; }
+        [Column("IdProfesor")]
+        public int idprofesor {  get; set; }
 
-        public TimeOnly hora_final_materia { get; set; }
+        [Column("IdEstudiante")]
+        public int idestudiante { get; set; }
 
-        public string curso_materia { get; set; }
+        [Column("Curso")]
+        public string curso { get; set; }
 
-        public Usuario Usuario { get; set;}
+
+
     }
 }

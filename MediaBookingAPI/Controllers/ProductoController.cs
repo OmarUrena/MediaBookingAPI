@@ -1,4 +1,43 @@
-﻿using MediaBookingAPI.Data;
+﻿//using MediaBookingAPI.Data;
+//using MediaBookingAPI.Models;
+//using Microsoft.AspNetCore.Mvc;
+//using Microsoft.EntityFrameworkCore;
+//using System.Collections.Generic;
+//using System.Threading.Tasks;
+
+//namespace MediaBookingAPI.Controllers
+//{
+//    [Route("api/[controller]")]
+//    [ApiController]
+//    public class ProductoController : ControllerBase
+//    {
+//        private readonly BDContext _context;
+
+//        public ProductoController(BDContext context)
+//        {
+//            _context = context;
+//        }
+
+//        // GET: api/Producto
+//        [HttpGet]
+//        public async Task<IActionResult> GetProducto()
+//        {
+//            var productos = await _context.Producto
+//                .Select(r => new {
+//                    id = r.Id,
+//                    idtipo = r.IdTipoProducto,
+//                    nombre = r.Nombre,
+//                    descripcion = r.Descripcion,
+//                    nombreTipoProducto = r.TipoProducto.nombre 
+//                })
+//                .ToListAsync();
+
+//            return Ok(productos);
+//        }
+//    }
+//}
+
+using MediaBookingAPI.Data;
 using MediaBookingAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,15 +59,17 @@ namespace MediaBookingAPI.Controllers
 
         // GET: api/Producto
         [HttpGet]
-        public async Task<IActionResult> GetProducto()
+        public async Task<IActionResult> GetProductos()
         {
+            // Es importante asegurar que incluyas la relación TipoProducto para evitar errores de referencia nula.
             var productos = await _context.Producto
-                .Select(r => new {
-                    id = r.Id,
-                    idtipo = r.IdTipoProducto,
-                    nombre = r.Nombre,
-                    descripcion = r.Descripcion,
-                    nombreTipoProducto = r.TipoProducto.nombre 
+                .Include(p => p.TipoProducto)  // Asegura que el TipoProducto esté cargado para evitar errores de referencia nula.
+                .Select(p => new {
+                    id = p.Id,
+                    idtipo = p.IdTipoProducto,
+                    nombre = p.Nombre,
+                    descripcion = p.Descripcion,
+                    nombreTipoProducto = p.TipoProducto != null ? p.TipoProducto.nombre : null  // Manejo seguro en caso de que TipoProducto sea nulo.
                 })
                 .ToListAsync();
 
@@ -36,3 +77,4 @@ namespace MediaBookingAPI.Controllers
         }
     }
 }
+

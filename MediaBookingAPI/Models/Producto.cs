@@ -17,10 +17,11 @@ namespace MediaBookingAPI.Models
         [Column("IdTipoProducto")]
         public int? IdTipoProducto { get; set; }
 
-        [ForeignKey("IdTipoProducto")] // Asegurando que tenga el nombre correcto de la columna de la tabla.
-        public virtual TipoProducto TipoProducto { get; set; }
 
-        public virtual ICollection<Inventario> inventario { get; set; }
+        //Llaves foraneas para poder utilizar los campos de tipoproducto, Esto crea una instancia para crear las relaciones.
+        [ForeignKey("IdTipoProducto")]
+        public TipoProducto TipoProducto { get; set; }
+        
     }
 
 }

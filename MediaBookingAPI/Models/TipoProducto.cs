@@ -14,7 +14,6 @@ namespace MediaBookingAPI.Models
         [Column("Descripcion")]
         public string descripcion { get; set; }
 
-        public virtual ICollection<Producto> productos { get; set; }
     }
 
 }

@@ -22,7 +22,7 @@ public class InventarioController : Controller
                 id = r.id,
                 idproducto = r.idproducto,
                 cantidad = r.cantidad,
-                nombreProducto = r.Producto.Nombre 
+                nombreProducto = r.Producto != null ? r.Producto.Nombre : null
             })
             .ToListAsync();
 

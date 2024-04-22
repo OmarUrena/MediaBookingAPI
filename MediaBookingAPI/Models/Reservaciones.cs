@@ -6,18 +6,41 @@ namespace MediaBookingAPI.Models
     public class Reservaciones
     {
         [Key]
-        public int id_reservacion { get; set; }
-        [ForeignKey("Usuario")]
-        public int id_usuario { get; set; }
-        public virtual Usuario Usuario { get; set; }
-        public string nombre_materia { get; set; }
-        [ForeignKey("Producto")]
-        public int id_producto { get; set; }
-        public virtual Productos Producto { get; set; }
-        public string telefono_reservacion { get; set; }
-        public DateTime hora_inicio_reservacion { get; set; }
-        public DateTime hora_final_reservacion { get; set; }
-        public string correo_reservacion { get; set; }
+        public int id { get; set; }
+
+        [Column("IdSolicitante")]
+        public int? idsolicitante { get; set; }
+
+        [Column("IdMateria")]
+        public int? idmateria { get; set; }
+
+        [Column("IdProducto")]
+        public int? idproducto { get; set; }
+
+        [Column("Estatus")]
+        public string estatus { get; set; }
+
+        [Column("IdAuxiliar")]
+        public int? idauxiliar { get; set; }
+
+        [Column("Codigo")]
+        public string codigo { get; set; }
+
+        [Column("FechaReserva")]
+        public DateOnly fechareserva { get; set; }
+
+
+        //Llaves foraneas para poder utilizar los campos de tipoproducto, Esto crea una instancia para crear las relaciones.
+        [ForeignKey("IdSolicitante")]
+        public Usuario Usuario { get; set; }
+        [ForeignKey("IdMateria")]
+        public  Materias Materias { get; set; }
+        [ForeignKey("IdProducto")]
+        public  Producto Producto { get; set; }
+        [ForeignKey("IdAuxiliar")]
+        public  Usuario Auxiliar { get; set; }
+
+
 
     }
 }

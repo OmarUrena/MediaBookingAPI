@@ -13,6 +13,8 @@ public class Inventario
     [Column("IdProducto")]
     public int? idproducto { get; set; }
 
+
+    //Llaves foraneas para poder utilizar los campos de tipoproducto, Esto crea una instancia para crear las relaciones.
     [ForeignKey("IdProducto")] 
-    public virtual Producto Producto { get; set; }
+    public Producto Producto { get; set; }
 }
