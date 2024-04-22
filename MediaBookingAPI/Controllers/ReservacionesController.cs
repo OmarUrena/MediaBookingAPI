@@ -32,7 +32,7 @@ namespace MediaBookingAPI.Controllers
                     IdReservacion = r.id_reservacion,
                     NombreUsuario = r.Usuario.nombre,
                     NombreMateria = r.nombre_materia,
-                    NombreProducto = r.Producto.nombre_producto,
+                    NombreProducto = r.Producto.Nombre,
                     TelefonoReservacion = r.telefono_reservacion,
                     HoraInicioReservacion = r.hora_inicio_reservacion,
                     HoraFinalReservacion = r.hora_final_reservacion,
