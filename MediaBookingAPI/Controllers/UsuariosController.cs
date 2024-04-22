@@ -50,5 +50,21 @@ namespace MediaBookingAPI.Controllers
 
             return Created("", usuario);
         }
+
+        [HttpPost("authenticate")]
+        public async Task<ActionResult<Usuario>> Authenticate([FromBody] Acceso login)
+        {
+            var usuario = await _context.Usuario
+                .SingleOrDefaultAsync(u => u.usuario == login.Username && u.clave == login.Password);
+
+            if (usuario == null)
+            {
+                return Unauthorized(new { message = "Usuario o contraseña incorrecta" });
+            }
+
+            return usuario; // En un caso real, deberías devolver solo datos seguros o un token JWT
+        }
+
+
     }
 }
