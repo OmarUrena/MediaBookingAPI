@@ -13,7 +13,7 @@ namespace MediaBookingAPI.Models
         public string nombre_materia { get; set; }
         [ForeignKey("Producto")]
         public int id_producto { get; set; }
-        public virtual Productos Producto { get; set; }
+        public virtual Producto Producto { get; set; }
         public string telefono_reservacion { get; set; }
         public DateTime hora_inicio_reservacion { get; set; }
         public DateTime hora_final_reservacion { get; set; }

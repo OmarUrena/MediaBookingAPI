@@ -19,7 +19,7 @@ namespace MediaBookingAPI.Controllers
         }
 
         // GET: api/Producto
-        [HttpGet]
+        /* [HttpGet]
         public async Task<IActionResult> GetProducto()
         {
             var productos = await _context.Producto
@@ -33,6 +33,19 @@ namespace MediaBookingAPI.Controllers
                 .ToListAsync();
 
             return Ok(productos);
+        } */
+
+        [HttpPost]
+
+        public async Task<IActionResult> CreateProducto([FromBody] Producto producto)
+        {
+            Console.WriteLine("Working");
+            _context.Producto.Add(producto);
+            Console.WriteLine(_context.Producto);
+            Console.WriteLine(producto);
+            await _context.SaveChangesAsync();
+
+            return Created("", producto);
         }
     }
 }

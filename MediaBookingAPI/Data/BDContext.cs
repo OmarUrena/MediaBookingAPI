@@ -15,7 +15,7 @@ namespace MediaBookingAPI.Data
 
         public DbSet<Inventario> Inventario { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        /* protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Producto>()
                .HasOne(p => p.TipoProducto)
@@ -27,7 +27,7 @@ namespace MediaBookingAPI.Data
                .HasOne(i => i.Producto)
                .WithMany(p => p.inventario) 
                .HasForeignKey(i => i.idproducto); 
-        }
+        } */
 
 
     }

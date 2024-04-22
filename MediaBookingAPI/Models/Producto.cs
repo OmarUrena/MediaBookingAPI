@@ -13,14 +13,18 @@ namespace MediaBookingAPI.Models
 
         [Column("Descripcion")]
         public string Descripcion { get; set; }
-
+        [ForeignKey("IdTipoProducto")]
         [Column("IdTipoProducto")]
-        public int? IdTipoProducto { get; set; }
+        public int IdTipoProducto { get; set; }
 
-        [ForeignKey("IdTipoProducto")] // Asegurando que tenga el nombre correcto de la columna de la tabla.
-        public virtual TipoProducto TipoProducto { get; set; }
+        [Column ("FechaRegistro")]
 
-        public virtual ICollection<Inventario> inventario { get; set; }
+        public DateTime FechaRegistro {  get; set; }
+
+         // Asegurando que tenga el nombre correcto de la columna de la tabla.
+        //public virtual TipoProducto TipoProducto { get; set; }
+
+        //public virtual ICollection<Inventario> inventario { get; set; }
     }
 
 }
