@@ -75,6 +75,13 @@ namespace MediaBookingAPI.Controllers
 
             return Ok(productos);
         } */
+        [HttpGet]
+
+        public async Task<ActionResult<IEnumerable<Producto>>> GetProductos()
+        {
+            return await _context.Producto.ToListAsync();
+        }
+
 
         [HttpPost]
 
